@@ -29,25 +29,55 @@
 
 // ================== Загрузка изображения ==================
 
-    if (isset($_FILES['image'])) {
-        $errors = array();
-        $file_name  = $_FILES['image']['name'];
-        $file_size  = $_FILES['image']['size'];
-        $file_tmp   = $_FILES['image']['tmp_name'];
-        $file_type  = $_FILES['image']['type'];
-        $file_ext   = strtolower(end(explode('.', $_FILES['image']['name'])));
+    if(isset($_FILES) && $_FILES['image']['error'] == 0){  // Проверяем, загрузил ли пользователь файл
 
-        $expensions = array("jpeg", "jpg", "png");
+        $file_name_tmp = $_FILES['image']['tmp_name']; // Новое имя файла, которе используется для вставки в папку uplouds
+        
+        $dir = '/uploads/'; // Директория для размещения файла
+        // $dir = dirname(uploads) .'/'.$_FILES['image']['name']; // Директория для размещения файла
 
-        if ($file_size > 2097152) {
-            $errors[] = 'Файл должен быть 2 Мб';
+        $file_name = $_FILES['image']['name'] // Имя загружаемого файла
+
+
+        if (move_uploaded_file($file_name_tmp, $file_new_name.$image)) { // функция move_uploaded_file() загружает файл - параметры функции 1. откуда, 2. куда. Проверка: если файл с параметрами загружен, то вернуть true.
+            $ok = true;
+
+
         }
 
-        if (empty($errors) == true) {
-            move_uploaded_file($file_tmp, "uploads/".$file_name);
-            echo "Файл загружен";
-        } else {
-            print $errors;
+
+
+        move_uploaded_file($file_name_tmp, $dir ); // Перемещаем файл в желаемую директорию
+        echo 'Файл загружен'; // Оповещаем пользователя об успешной загрузке файла
+        }
+        else{
+        echo 'Файл не загружен'; // Оповещаем пользователя о том, что файл не был загружен
         }
 
-    }
+
+
+
+
+
+
+        // $errors = array();
+        // $file_name  = $_FILES['image']['name'];
+        // $file_size  = $_FILES['image']['size'];
+        // $file_tmp   = $_FILES['image']['tmp_name'];
+        // $file_type  = $_FILES['image']['type'];
+        // $file_ext   = strtolower(end(explode('.', $_FILES['image']['name'])));
+
+        // $expensions = array("jpeg", "jpg", "png");
+
+        // if ($file_size > 2097152) {
+        //     $errors[] = 'Файл должен быть 2 Мб';
+        // }
+
+        // if (empty($errors) == true) {
+        //     move_uploaded_file($file_tmp, "uploads/".$file_name);
+        //     echo "Файл загружен";
+        // } else {
+        //     print $errors;
+        // }
+
+    // }
