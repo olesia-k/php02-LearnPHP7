@@ -15,6 +15,11 @@
 		<div class="form-group">
 			<input type="text" class="form-control" name="subject" placeholder="Тема">
 		</div>
+		<div class="form-group">    
+	    	<input type="file" name="image">
+	    	<p class="help-block">Форматы файла: .jpg, .jpeg, .png, до 20 Мб</p>
+	  	</div>
+
 		<div class="form-group">
 			<textarea name="message">Сообщение</textarea>
 		</div>

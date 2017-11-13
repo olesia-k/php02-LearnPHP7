@@ -1,7 +1,7 @@
 <?
     require_once("head.php");
 
-    phpinfo();
+   
 
 
 
