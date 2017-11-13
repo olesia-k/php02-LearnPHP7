@@ -1,0 +1,15 @@
+html,body {
+	width:100%;
+	height:100%;
+
+}
+
+#form {
+	margin: 20px;
+	max-width: 300px;
+}
+
+.successMessage {
+	font-size: 20px;
+	color: green;
+}
