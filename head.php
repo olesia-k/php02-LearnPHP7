@@ -1,11 +1,3 @@
-<?
-$counter = isset($_COOKIE['counter']) ? $_COOOKIE['counter'] :0; // Проверить, существует ли куки с названием counter, если нет, то у него значение 0
-$counter++; // Прибавляем каждый раз по 1
-setcookie("counter", $counter);
-echo $counter;
-?>
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,6 +8,6 @@ echo $counter;
     <title>Document</title>
 </head>
 <body>
-<h1> </h1>
+<h1></h1>
 
 
