@@ -27,17 +27,28 @@
 
     }
 
-// ================== Загрузка изображения ==================
+// ================== Загрузка изображения на сервер ==================
 
-        if($_POST) {
-            echo "<pre>";
-             print_r($_POST);
-            echo "<pre>";
+        if($_POST) {            
 
-            if (isset ($_FILES)){
-                echo "<pre>";
-                 phprint_r($_FILES);
-                echo "<pre>";
+            if($_FILES){
+
+                $file_name_tmp = $_FILES['image']['tmp_name']; // Используется для вставки в папку uploud
+                $dir = '/uploads/'; // Путь к папке для сохранения файлов
+                $file_new_name = $_SERVER['DOCUMENT_ROOT'].$dir; // работает, если /upload/ прописан со слешем вначале и в конце. $_SERVER['DOCUMENT_ROOT'] содержит домен.
+                // $image = $_FILES['image']['name'] // Имя загружаемого файла
+                $image = date('y-m_d_h_i_s').'.jpg'; // Имя загружаемого файла с датой и расширением, чтобы файлы с одним именем не перезаписывались.
+
+                if (move_uploaded_file($file_name_tmp, $file_new_name.$image)) { // функция move_uploaded_file() загружает файл - параметры функции 1. откуда, 2. куда. Проверка: если файл с параметрами загружен, то вернуть true.
+                    $ok = true;
+
+                } else {
+                    $image = ''; // Что вставляется в БД, когда файл не выбран. 
+                        echo "no file";
+                }
+
+            } else {
+                echo "no file";
             }
         } 
         

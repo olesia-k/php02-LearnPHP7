@@ -2,7 +2,7 @@
     require_once("head.php");
 ?>
 
-	<form action="send.php" method="POST" id="form">
+	<form action="send.php" method="POST" id="form" enctype="multipart/form-data">
 		<div class="form-group">
 			<input type="email" class="form-control" name="email" placeholder="Email*" >
 		</div>
