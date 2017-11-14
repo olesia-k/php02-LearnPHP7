@@ -7,8 +7,7 @@
         $user_email = $_POST['user_email']; // Поле email для БД 
         $name = $_POST['name']; // Поле name в для БД 
         $phone = $_POST['phone']; // Поле body в для БД   
-        $user_message = "Сообщение с сайта";      
-
+        
         $to = "seo@graver.by";    
         $subject = "Заявка с сайта: " . $_POST['subject'];
         $message = "Оформлена заявка со страницы Контакты \n Тираж 20 шт.";
@@ -51,11 +50,11 @@
 
                 } else {
                     $image = ''; // Что вставляется в БД, когда файл не выбран. 
-                        echo "no file";
+                        echo "Файл отсутствует";
                 }
 
             } else {
-                echo "Файл не загружен";
+                echo "Ошибка загрузки файла";
             }
         } 
         
@@ -72,14 +71,14 @@
                 '$name', 
                 '$phone',
                 '$subject',                  
-                'img',  
-                'user_message'                 
+                '$image',  
+                ''                
             )";
      
     // Передача данных в БД, если нет ошибок
     $result = mysqli_query($db_connect, $query);
     if (!$result) {
-        exit($query);
+        exit('Ошибка данных в БД'.$query);
     }
      
     
