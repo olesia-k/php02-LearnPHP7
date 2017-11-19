@@ -20,6 +20,6 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-<h1></h1>
+<!-- <h1>Привет</h1> -->
 
 
